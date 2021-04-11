@@ -2,7 +2,7 @@
 #### https://github.com/qiuhanty/CmdGuru ####
 
 ##################
-# config
+# Configuration
 ##################
 # https://misc.flogisoft.com/bash/tip_colors_and_formatting
 MARK_COLOR=96 # Light cyan
@@ -50,7 +50,7 @@ function m()
     rm ${CDMARK}.$$;
     # Prompt all the directories
     if [ "$os_type" = "MacOS" ]; then
-      # xxxTODO: support terminal color fot Mac
+      # xxxTODO: support terminal color for Mac
       sed '' ${CDMARK};
       echo "_________________________________"
       echo -n "Which one to choose(E to edit):";
@@ -60,7 +60,7 @@ function m()
         | sed "s/\t/\\\t\\e[${DIR_COLOR}m/" \
         | sed 's/$/\\n/' | sed 's/e\[/\\e\[/g' > ${CDMARK}.$$
       echo -ne " "`cat ${CDMARK}.$$`
-      # rm ${CDMARK}.$$
+      rm ${CDMARK}.$$
       echo -e "\e[${DELIMITER_COLOR}m_________________________________"
       echo -ne "\e[${HINT_COLOR}mWhich one to choose(E to edit):";
     fi
@@ -131,7 +131,7 @@ function s() {
   done
   # Prompt all the matches in reverse order
   if [ "$os_type" = "MacOS" ]; then
-    # xxxTODO: support terminal color fot Mac
+    # xxxTODO: support terminal color for Mac
     sed = ${TMPCMDLIST}.$$ | sed '/./N; s/\n/ /' | sed -n '1!G;h;$p'
   else
     sed 's/\\/\\\\/g' ${TMPCMDLIST}.$$ | sed "s/^/\\e[${CMD_COLOR}m/" | sed = | sed '/./N; s/\n/ /' \
@@ -185,7 +185,7 @@ function s() {
     else
       sed -n "$line"p ${TMPCMDLIST}.$$ | sed -e 's/ \/\/ .*//' \
         | sed 's/[ \t]*$//' > ${TMPCMDLIST}.$$.$$
-      # Append the command to history, so it could be invoked by "!!" later
+      # Append the command to history, so it could be recalled by "!!" later
       builtin history -r ${TMPCMDLIST}.$$.$$
       rm ${TMPCMDLIST}.$$.$$ >& /dev/null
     fi

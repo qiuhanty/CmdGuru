@@ -23,6 +23,10 @@ CmdGuru provides several handy bash functions and hundreds of frequently used Li
 * `cmd`: open the command list file with $EDITOR, then you can modify commands or add comments.
 * `m [mark]` (short for **mark**): search for the given bookmark (i.e., [mark], which could be any string without tab), if there's a match, jump to that directory directly. Otherwise, add this bookmark and current working directory to the directory list, then you can use this bookmark to go to this directory later.
 * `m`: show the directory list, each line starts with a bookmark, followed by a directory path. Then you can input a bookmark to go to the corresponding folder, or input 'E' to open the bookmark file.
+* `beep`: get a notification when a command is done. e.g., `make -j16; beep`
+* `ex`: call corresponding command to uncompress or extract a tarball. e.g., `ex file.tar.gz`. Supported file extensions are: `.tar.bz2`, `.tar.gz`, `.tar.xz`, `.bz2`, `.rar`, `.gz`, `.tar`, `.tbz2`, `.tgz`, `.zip`, `.Z`, `.7z`.
+* `ss`: a wrapper for `screen`. `ss sessionname` will attach to a session with the given name if it's already existed, otherwise it will create it.
+* `tt`: a wrapper for `tmux`. `tt sessionname` will attach to a session with the given name if it's already existed, otherwise it will create it.
 
 ## Tips
 * A comment is at the end of a line and starts with " // ", which is used for **matching only**.

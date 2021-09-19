@@ -4,23 +4,24 @@
 # notify after finishing a cmd, e.g., "make ; beep"
 alias beep="for i in {1..3} ; do echo -e '\a'; sleep 3; done"
 
+# uncompress/extract tarball
 export tar=tar
 ex(){
   for args in $@
   do
     case $args in
       *.tar.bz2)   $tar xvjf $args        ;;
-      *.tar.gz)    $tar xzf $args     ;;
-      *.tar.xz)    $tar -xf $args     ;;
-      *.bz2)       bunzip2 $args       ;;
-      *.rar)       rar x $args     ;;
-      *.gz)        gunzip $args     ;;
-      *.tar)       $tar xf $args        ;;
-      *.tbz2)      $tar xjf $args      ;;
-      *.tgz)       $tar xzf $args       ;;
-      *.zip)       unzip $args     ;;
-      *.Z)         uncompress $args  ;;
-      *.7z)        7z x $args    ;;
+      *.tar.gz)    $tar xzf $args         ;;
+      *.tar.xz)    $tar -xf $args         ;;
+      *.bz2)       bunzip2 $args          ;;
+      *.rar)       rar x $args            ;;
+      *.gz)        gunzip $args           ;;
+      *.tar)       $tar xf $args          ;;
+      *.tbz2)      $tar xjf $args         ;;
+      *.tgz)       $tar xzf $args         ;;
+      *.zip)       unzip $args            ;;
+      *.Z)         uncompress $args       ;;
+      *.7z)        7z x $args             ;;
       *)           echo "'$args' cannot be extracted via extract()" ;;
     esac
   done

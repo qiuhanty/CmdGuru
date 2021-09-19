@@ -1,6 +1,73 @@
 ################## Beginning of CmdGuru ##################
 #### https://github.com/qiuhanty/CmdGuru ####
 
+# notify after finishing a cmd, e.g., "make ; beep"
+alias beep="for i in {1..3} ; do echo -e '\a'; sleep 3; done"
+
+export tar=tar
+ex(){
+  for args in $@
+  do
+    case $args in
+      *.tar.bz2)   $tar xvjf $args        ;;
+      *.tar.gz)    $tar xzf $args     ;;
+      *.tar.xz)    $tar -xf $args     ;;
+      *.bz2)       bunzip2 $args       ;;
+      *.rar)       rar x $args     ;;
+      *.gz)        gunzip $args     ;;
+      *.tar)       $tar xf $args        ;;
+      *.tbz2)      $tar xjf $args      ;;
+      *.tgz)       $tar xzf $args       ;;
+      *.zip)       unzip $args     ;;
+      *.Z)         uncompress $args  ;;
+      *.7z)        7z x $args    ;;
+      *)           echo "'$args' cannot be extracted via extract()" ;;
+    esac
+  done
+}
+
+# screen
+function ss()
+{
+  if [ "$#" -lt 1 ]; then
+    screen -ls;
+    return;
+  fi
+  screen -x $*
+  if [ $? -ne 0 ]; then
+    if [ -r /tmp/screenrc ]; then
+      screen -c /tmp/screenrc -S $*;
+    else
+      screen -S $*;
+    fi
+  fi
+}
+
+# tmux
+function tt()
+{
+  if [ "$#" -lt 1 ]; then
+    tmux ls;
+    return;
+  fi
+  if [ -r /tmp/tmuxrc ]; then
+    tmux -f /tmp/tmuxrc att -t $*
+  else
+    tmux att -t $*
+  fi
+  if [ $? -ne 0 ]; then
+    if [ -r /tmp/tmuxrc ]; then
+      tmux -f /tmp/tmuxrc new-session -s $* -d -n "src"
+      tmux new-window -n "make"
+      tmux -2 attach-session
+    else
+      tmux new-session -s $* -d -n "src"
+      tmux new-window -n "make"
+      tmux -2 attach-session
+    fi
+  fi
+}
+
 ##################
 # Configuration
 ##################

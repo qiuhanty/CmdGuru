@@ -885,3 +885,6 @@ tcpdump -r file.cap // Reading from capture file
 tmux attach // To restore tmux session
 tmux attach -d // To detach an already attached session (great if you are moving devices with different screen resolutions)
 tmux ls // To display session
+(head -n1 && tail -n1) < file // print first line and last line
+sed -e 1b -e '$!d' file // print first line and last line
+sudo ioping -c 10 /dev/sda1 // disk perf/latency
